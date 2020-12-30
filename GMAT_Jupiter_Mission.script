@@ -251,7 +251,7 @@ GMAT DeepSpaceProp.Type = RungeKutta89;
 GMAT DeepSpaceProp.InitialStepSize = 60;
 GMAT DeepSpaceProp.Accuracy = 9.999999999999999e-12;
 GMAT DeepSpaceProp.MinStep = 0.001;
-GMAT DeepSpaceProp.MaxStep = 86400;
+GMAT DeepSpaceProp.MaxStep = 172800;
 GMAT DeepSpaceProp.MaxStepAttempts = 50;
 GMAT DeepSpaceProp.StopIfAccuracyIsViolated = true;
 
@@ -335,9 +335,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = All;
-GMAT SolarSystemView.UpperLeft = [ 0.1202442461249413 0.09015639374425023 ];
-GMAT SolarSystemView.Size = [ 0.7994363550962893 0.8463661453541859 ];
-GMAT SolarSystemView.RelativeZOrder = 1199;
+GMAT SolarSystemView.UpperLeft = [ 0.1197745420385157 0.08823529411764706 ];
+GMAT SolarSystemView.Size = [ 0.7989666510098637 0.8455882352941176 ];
+GMAT SolarSystemView.RelativeZOrder = 1742;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {DALA_Sat, DALA_SatFine, Earth, Sun, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -367,9 +367,9 @@ GMAT SolarSystemView.EnableConstellations = On;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = Current;
-GMAT JupiterView.UpperLeft = [ 0.07703147017379051 0.07175712971481141 ];
-GMAT JupiterView.Size = [ 0.7994363550962893 0.8463661453541859 ];
-GMAT JupiterView.RelativeZOrder = 923;
+GMAT JupiterView.UpperLeft = [ 0.0760920620009394 0.06985294117647059 ];
+GMAT JupiterView.Size = [ 0.7994363550962893 0.8455882352941176 ];
+GMAT JupiterView.RelativeZOrder = 1448;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {DALA_Sat, DALA_SatFine, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -415,9 +415,9 @@ GMAT ReportFile1.ColumnWidth = 23;
 GMAT ReportFile1.WriteReport = true;
 
 Create DynamicDataDisplay Results;
-GMAT Results.UpperLeft = [ 0 -0.02115915363385465 ];
-GMAT Results.Size = [ 0.3893846876467825 0.624655013799448 ];
-GMAT Results.RelativeZOrder = 913;
+GMAT Results.UpperLeft = [ 0 -0.02022058823529412 ];
+GMAT Results.Size = [ 0.3973696571160169 0.6663602941176471 ];
+GMAT Results.RelativeZOrder = 1464;
 GMAT Results.Maximized = false;
 GMAT Results.AddParameters = {1, VinfX, alpha};
 GMAT Results.AddParameters = {2, VinfY, delta};
@@ -430,9 +430,9 @@ GMAT Results.CritColor = [255 0 0];
 
 Create OrbitView EarthView;
 GMAT EarthView.SolverIterations = Current;
-GMAT EarthView.UpperLeft = [ 0.06716768435885392 0.05335786568537258 ];
-GMAT EarthView.Size = [ 0.7989666510098637 0.8463661453541859 ];
-GMAT EarthView.RelativeZOrder = 937;
+GMAT EarthView.UpperLeft = [ 0.06622827618600281 0.05147058823529412 ];
+GMAT EarthView.Size = [ 0.7989666510098637 0.8455882352941176 ];
+GMAT EarthView.RelativeZOrder = 1636;
 GMAT EarthView.Maximized = false;
 GMAT EarthView.Add = {DALA_Sat, DALA_SatFine, Earth};
 GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
@@ -465,8 +465,8 @@ GMAT EarthView.EnableConstellations = Off;
 %----------------------------------------
 Create Variable TOF maxStep alpha delta C3 Rp INC BVAZI VinfX VinfY;
 Create Variable VinfZ TOF_MCM;
-GMAT TOF = 48;
-GMAT maxStep = 1;
+GMAT TOF = 1465;
+GMAT maxStep = 1.5;
 GMAT alpha = 0;
 GMAT delta = 0;
 GMAT C3 = 0;
@@ -494,9 +494,9 @@ GMAT TOF_MCM = 0;
 
 BeginMissionSequence;
 Target 'TargetJupiter' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
-   Vary 'VaryVx' DC1(HI.Element1 = 50, {Perturbation = 0.0001, Lower = -100, Upper = 100, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-   Vary 'VaryVy' DC1(HI.Element2 = 50, {Perturbation = 0.0001, Lower = -100, Upper = 100, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-   Vary 'VaryVz' DC1(HI.Element3 = 50, {Perturbation = 0.0001, Lower = -100, Upper = 100, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVx' DC1(HI.Element1 = 10, {Perturbation = 0.0001, Lower = -20, Upper = 20, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVy' DC1(HI.Element2 = 5, {Perturbation = 0.0001, Lower = -20, Upper = 20, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVz' DC1(HI.Element3 = 5, {Perturbation = 0.0001, Lower = -20, Upper = 20, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
    Maneuver 'HM' HI(DALA_Sat);
    
    BeginScript 'ExtractVinf'
@@ -505,7 +505,7 @@ Target 'TargetJupiter' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, Sh
       GMAT VinfZ = DALA_Sat.EarthMJ2000Eq.VZ;
    EndScript;
    Propagate 'PropTOF' DeepSpaceProp(DALA_Sat) {DALA_Sat.ElapsedDays = TOF};
-   Achieve 'ReachVenus' DC1(DALA_Sat.Jupiter.RMAG = 0, {Tolerance = 800e2});
+   Achieve 'ReachVenus' DC1(DALA_Sat.Jupiter.RMAG = 0, {Tolerance = 48.2e6});
 EndTarget;  % For targeter DC1
 
 BeginScript 'DefineSecondSat'
