@@ -339,7 +339,7 @@ Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = All;
 GMAT SolarSystemView.UpperLeft = [ 0.1315171441991545 0.2018604651162791 ];
 GMAT SolarSystemView.Size = [ 0.7984969469234382 0.8446511627906976 ];
-GMAT SolarSystemView.RelativeZOrder = 2560;
+GMAT SolarSystemView.RelativeZOrder = 2564;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {DALA_Sat, DALA_SatFine, Earth, Sun, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
