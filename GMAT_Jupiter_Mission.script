@@ -251,7 +251,7 @@ GMAT DeepSpaceProp.Type = RungeKutta89;
 GMAT DeepSpaceProp.InitialStepSize = 60;
 GMAT DeepSpaceProp.Accuracy = 9.999999999999999e-12;
 GMAT DeepSpaceProp.MinStep = 0.001;
-GMAT DeepSpaceProp.MaxStep = 172800;
+GMAT DeepSpaceProp.MaxStep = 86400;
 GMAT DeepSpaceProp.MaxStepAttempts = 50;
 GMAT DeepSpaceProp.StopIfAccuracyIsViolated = true;
 
@@ -335,9 +335,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = All;
-GMAT SolarSystemView.UpperLeft = [ 0.1197745420385157 0.08823529411764706 ];
+GMAT SolarSystemView.UpperLeft = [ 0.1324565523720056 0.203125 ];
 GMAT SolarSystemView.Size = [ 0.7989666510098637 0.8455882352941176 ];
-GMAT SolarSystemView.RelativeZOrder = 1742;
+GMAT SolarSystemView.RelativeZOrder = 1826;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {DALA_Sat, DALA_SatFine, Earth, Sun, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -505,7 +505,7 @@ Target 'TargetJupiter' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, Sh
       GMAT VinfZ = DALA_Sat.EarthMJ2000Eq.VZ;
    EndScript;
    Propagate 'PropTOF' DeepSpaceProp(DALA_Sat) {DALA_Sat.ElapsedDays = TOF};
-   Achieve 'ReachVenus' DC1(DALA_Sat.Jupiter.RMAG = 0, {Tolerance = 48.2e6});
+   Achieve 'ReachJupiter' DC1(DALA_Sat.Jupiter.RMAG = 0, {Tolerance = 48.2e6});
 EndTarget;  % For targeter DC1
 
 BeginScript 'DefineSecondSat'
