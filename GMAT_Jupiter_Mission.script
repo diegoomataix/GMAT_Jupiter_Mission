@@ -24,6 +24,7 @@ GMAT DALA_Sat.DragArea = 15;
 GMAT DALA_Sat.SRPArea = 1;
 GMAT DALA_Sat.SPADDragScaleFactor = 1;
 GMAT DALA_Sat.SPADSRPScaleFactor = 1;
+GMAT DALA_Sat.Tanks = {DALA_Tank};
 GMAT DALA_Sat.NAIFId = -10002001;
 GMAT DALA_Sat.NAIFIdReferenceFrame = -9002001;
 GMAT DALA_Sat.OrbitColor = Red;
@@ -68,6 +69,7 @@ GMAT DALA_SatFine.DragArea = 15;
 GMAT DALA_SatFine.SRPArea = 1;
 GMAT DALA_SatFine.SPADDragScaleFactor = 1;
 GMAT DALA_SatFine.SPADSRPScaleFactor = 1;
+GMAT DALA_SatFine.Tanks = {DALA_Tank};
 GMAT DALA_SatFine.NAIFId = -10005001;
 GMAT DALA_SatFine.NAIFIdReferenceFrame = -9005001;
 GMAT DALA_SatFine.OrbitColor = Green;
@@ -100,11 +102,11 @@ GMAT DALA_SatFine.EulerAngleSequence = '321';
 
 Create ChemicalTank DALA_Tank;
 GMAT DALA_Tank.AllowNegativeFuelMass = false;
-GMAT DALA_Tank.FuelMass = 500;
+GMAT DALA_Tank.FuelMass = 10000;
 GMAT DALA_Tank.Pressure = 1500;
 GMAT DALA_Tank.Temperature = 20;
 GMAT DALA_Tank.RefTemperature = 20;
-GMAT DALA_Tank.Volume = 0.75;
+GMAT DALA_Tank.Volume = 100;
 GMAT DALA_Tank.FuelDensity = 1000;
 GMAT DALA_Tank.PressureModel = PressureRegulated;
 
@@ -199,6 +201,7 @@ GMAT Thruster_corr.K13 = 0;
 GMAT Thruster_corr.K14 = 0;
 GMAT Thruster_corr.K15 = 0;
 GMAT Thruster_corr.K16 = 0;
+
 
 
 
@@ -371,10 +374,10 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView EarthView;
 GMAT EarthView.SolverIterations = Current;
-GMAT EarthView.UpperLeft = [ 0.3024032042723632 0.1736111111111111 ];
-GMAT EarthView.Size = [ 0.4879839786381843 0.8298611111111112 ];
-GMAT EarthView.RelativeZOrder = 755;
-GMAT EarthView.Maximized = false;
+GMAT EarthView.UpperLeft = [ 0.3621337340345605 0.1701388888888889 ];
+GMAT EarthView.Size = [ 0.5875281743050338 0.8298611111111112 ];
+GMAT EarthView.RelativeZOrder = 240;
+GMAT EarthView.Maximized = true;
 GMAT EarthView.Add = {DALA_Sat, DALA_SatFine, Earth};
 GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
 GMAT EarthView.DrawObject = [ true true true ];
@@ -403,10 +406,10 @@ GMAT EarthView.EnableConstellations = Off;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = All;
-GMAT SolarSystemView.UpperLeft = [ -0.09879839786381843 -37.70601851851852 ];
-GMAT SolarSystemView.Size = [ 0.9933244325767691 0.9884259259259259 ];
-GMAT SolarSystemView.RelativeZOrder = 915;
-GMAT SolarSystemView.Maximized = false;
+GMAT SolarSystemView.UpperLeft = [ -0.1187077385424493 -37.66203703703704 ];
+GMAT SolarSystemView.Size = [ 1.19534184823441 0.9884259259259259 ];
+GMAT SolarSystemView.RelativeZOrder = 244;
+GMAT SolarSystemView.Maximized = true;
 GMAT SolarSystemView.Add = {DALA_Sat, DALA_SatFine, Earth, Sun, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
 GMAT SolarSystemView.DrawObject = [ true true true true true ];
@@ -435,9 +438,9 @@ GMAT SolarSystemView.EnableConstellations = Off;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = All;
-GMAT JupiterView.UpperLeft = [ 0.0801068090787717 0.01736111111111111 ];
-GMAT JupiterView.Size = [ 0.9025367156208278 1.113425925925926 ];
-GMAT JupiterView.RelativeZOrder = 773;
+GMAT JupiterView.UpperLeft = [ -0.1269722013523666 0.1331018518518519 ];
+GMAT JupiterView.Size = [ 1.08564988730278 1.109953703703704 ];
+GMAT JupiterView.RelativeZOrder = 238;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {DALA_Sat, DALA_SatFine, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -466,10 +469,10 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = Off;
 
 Create DynamicDataDisplay TABLE;
-GMAT TABLE.UpperLeft = [ 0.1535380507343124 0.2141203703703704 ];
-GMAT TABLE.Size = [ 0.7136181575433912 1.024305555555556 ];
-GMAT TABLE.RelativeZOrder = 749;
-GMAT TABLE.Maximized = false;
+GMAT TABLE.UpperLeft = [ 0.1825694966190834 0.2106481481481481 ];
+GMAT TABLE.Size = [ 0.8970698722764838 1.180555555555556 ];
+GMAT TABLE.RelativeZOrder = 242;
+GMAT TABLE.Maximized = true;
 GMAT TABLE.AddParameters = {1, VinfX_E, alpha_E, Hp_Jup, dV_HM};
 GMAT TABLE.AddParameters = {2, VinfY_E, delta_E, Rp_Jup, dV_MCM};
 GMAT TABLE.AddParameters = {3, VinfZ_E, BVAZI_E, INC_final, dV_FM};
@@ -536,6 +539,7 @@ GMAT dV_HM = 0;
 GMAT dV_MCM = 0;
 GMAT dV_FM = 0;
 GMAT dV = 0;
+
 
 
 
@@ -621,7 +625,7 @@ If 'Instant analysis' CASE == 1
    EndScript;
    UpdateDynamicData 'UpdateTable2' TABLE;
    If 'Fly-by' ECC >= 1.0
-      Propagate 'PropFly-by' NearJupiter(DALA_SatFine) {DALA_SatFine.ElapsedDays = 2};
+      Propagate 'PropFly-by' NearJupiter(DALA_SatFine) {DALA_SatFine.Jupiter.RMAG = 48.2e6};
    EndIf;
    If 'Jup_orbit' ECC < 1
       Target 'TargetOrbit' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
