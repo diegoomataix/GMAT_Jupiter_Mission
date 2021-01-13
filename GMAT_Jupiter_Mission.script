@@ -24,7 +24,6 @@ GMAT DALA_Sat.DragArea = 15;
 GMAT DALA_Sat.SRPArea = 1;
 GMAT DALA_Sat.SPADDragScaleFactor = 1;
 GMAT DALA_Sat.SPADSRPScaleFactor = 1;
-GMAT DALA_Sat.Tanks = {DALA_Tank};
 GMAT DALA_Sat.NAIFId = -10002001;
 GMAT DALA_Sat.NAIFIdReferenceFrame = -9002001;
 GMAT DALA_Sat.OrbitColor = Red;
@@ -69,7 +68,6 @@ GMAT DALA_SatFine.DragArea = 15;
 GMAT DALA_SatFine.SRPArea = 1;
 GMAT DALA_SatFine.SPADDragScaleFactor = 1;
 GMAT DALA_SatFine.SPADSRPScaleFactor = 1;
-GMAT DALA_SatFine.Tanks = {DALA_Tank};
 GMAT DALA_SatFine.NAIFId = -10005001;
 GMAT DALA_SatFine.NAIFIdReferenceFrame = -9005001;
 GMAT DALA_SatFine.OrbitColor = Green;
@@ -97,16 +95,66 @@ GMAT DALA_SatFine.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT DALA_SatFine.EulerAngleSequence = '321';
 
 %----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DALA_SatFinite;
+GMAT DALA_SatFinite.DateFormat = UTCGregorian;
+GMAT DALA_SatFinite.Epoch = '13 Dec 2027 11:59:28.000';
+GMAT DALA_SatFinite.CoordinateSystem = EarthMJ2000Eq;
+GMAT DALA_SatFinite.DisplayStateType = Cartesian;
+GMAT DALA_SatFinite.X = 1e-08;
+GMAT DALA_SatFinite.Y = 1e-08;
+GMAT DALA_SatFinite.Z = 1e-08;
+GMAT DALA_SatFinite.VX = 1e-08;
+GMAT DALA_SatFinite.VY = 1e-08;
+GMAT DALA_SatFinite.VZ = 1e-08;
+GMAT DALA_SatFinite.DryMass = 500;
+GMAT DALA_SatFinite.Cd = 2.2;
+GMAT DALA_SatFinite.Cr = 1.8;
+GMAT DALA_SatFinite.DragArea = 15;
+GMAT DALA_SatFinite.SRPArea = 1;
+GMAT DALA_SatFinite.SPADDragScaleFactor = 1;
+GMAT DALA_SatFinite.SPADSRPScaleFactor = 1;
+GMAT DALA_SatFinite.Tanks = {DALA_Tank};
+GMAT DALA_SatFinite.Thrusters = {Thruster_corr, Thruster_Inj};
+GMAT DALA_SatFinite.NAIFId = -10002001;
+GMAT DALA_SatFinite.NAIFIdReferenceFrame = -9002001;
+GMAT DALA_SatFinite.OrbitColor = Red;
+GMAT DALA_SatFinite.TargetColor = Teal;
+GMAT DALA_SatFinite.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DALA_SatFinite.CdSigma = 1e+70;
+GMAT DALA_SatFinite.CrSigma = 1e+70;
+GMAT DALA_SatFinite.Id = 'SatId';
+GMAT DALA_SatFinite.Attitude = CoordinateSystemFixed;
+GMAT DALA_SatFinite.SPADSRPInterpolationMethod = Bilinear;
+GMAT DALA_SatFinite.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DALA_SatFinite.SPADDragInterpolationMethod = Bilinear;
+GMAT DALA_SatFinite.SPADDragScaleFactorSigma = 1e+70;
+GMAT DALA_SatFinite.ModelFile = 'C:\Users\diego\Dropbox\Academic\MEng Space Systems\1. EEA - Entorno Espacial y Analisis de Mision\GMAT\atlantis.3ds';
+GMAT DALA_SatFinite.ModelOffsetX = 0;
+GMAT DALA_SatFinite.ModelOffsetY = 0;
+GMAT DALA_SatFinite.ModelOffsetZ = 0;
+GMAT DALA_SatFinite.ModelRotationX = 0;
+GMAT DALA_SatFinite.ModelRotationY = 0;
+GMAT DALA_SatFinite.ModelRotationZ = 0;
+GMAT DALA_SatFinite.ModelScale = 1;
+GMAT DALA_SatFinite.AttitudeDisplayStateType = 'Quaternion';
+GMAT DALA_SatFinite.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DALA_SatFinite.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DALA_SatFinite.EulerAngleSequence = '321';
+
+%----------------------------------------
 %---------- Hardware Components
 %----------------------------------------
 
 Create ChemicalTank DALA_Tank;
-GMAT DALA_Tank.AllowNegativeFuelMass = false;
+GMAT DALA_Tank.AllowNegativeFuelMass = true;
 GMAT DALA_Tank.FuelMass = 10000;
 GMAT DALA_Tank.Pressure = 1500;
 GMAT DALA_Tank.Temperature = 20;
 GMAT DALA_Tank.RefTemperature = 20;
-GMAT DALA_Tank.Volume = 100;
+GMAT DALA_Tank.Volume = 10000;
 GMAT DALA_Tank.FuelDensity = 1000;
 GMAT DALA_Tank.PressureModel = PressureRegulated;
 
@@ -169,7 +217,7 @@ GMAT Thruster_corr.DecrementMass = true;
 GMAT Thruster_corr.Tank = {DALA_Tank};
 GMAT Thruster_corr.MixRatio = [ 1 ];
 GMAT Thruster_corr.GravitationalAccel = 9.81;
-GMAT Thruster_corr.C1 = 40000;
+GMAT Thruster_corr.C1 = 40;
 GMAT Thruster_corr.C2 = 0;
 GMAT Thruster_corr.C3 = 0;
 GMAT Thruster_corr.C4 = 0;
@@ -201,6 +249,13 @@ GMAT Thruster_corr.K13 = 0;
 GMAT Thruster_corr.K14 = 0;
 GMAT Thruster_corr.K15 = 0;
 GMAT Thruster_corr.K16 = 0;
+
+
+
+
+
+
+
 
 
 
@@ -311,7 +366,7 @@ GMAT HI.Axes = VNB;
 GMAT HI.Element1 = 0;
 GMAT HI.Element2 = 0;
 GMAT HI.Element3 = 0;
-GMAT HI.DecrementMass = true;
+GMAT HI.DecrementMass = false;
 GMAT HI.Tank = {DALA_Tank};
 GMAT HI.Isp = 380;
 GMAT HI.GravitationalAccel = 9.81;
@@ -323,7 +378,7 @@ GMAT MCI.Axes = VNB;
 GMAT MCI.Element1 = 0;
 GMAT MCI.Element2 = 0;
 GMAT MCI.Element3 = 0;
-GMAT MCI.DecrementMass = true;
+GMAT MCI.DecrementMass = false;
 GMAT MCI.Tank = {DALA_Tank};
 GMAT MCI.Isp = 380;
 GMAT MCI.GravitationalAccel = 9.81;
@@ -335,10 +390,22 @@ GMAT FI.Axes = VNB;
 GMAT FI.Element1 = 0;
 GMAT FI.Element2 = 0;
 GMAT FI.Element3 = 0;
-GMAT FI.DecrementMass = true;
+GMAT FI.DecrementMass = false;
 GMAT FI.Tank = {DALA_Tank};
 GMAT FI.Isp = 380;
 GMAT FI.GravitationalAccel = 9.81;
+
+Create FiniteBurn HF;
+GMAT HF.Thrusters = {Thruster_Inj};
+GMAT HF.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
+
+Create FiniteBurn MCF;
+GMAT MCF.Thrusters = {Thruster_corr};
+GMAT MCF.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
+
+Create FiniteBurn FF;
+GMAT FF.Thrusters = {Thruster_Inj};
+GMAT FF.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
 
 %----------------------------------------
 %---------- Coordinate Systems
@@ -374,10 +441,10 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView EarthView;
 GMAT EarthView.SolverIterations = Current;
-GMAT EarthView.UpperLeft = [ 0.3621337340345605 0.1701388888888889 ];
-GMAT EarthView.Size = [ 0.5875281743050338 0.8298611111111112 ];
-GMAT EarthView.RelativeZOrder = 240;
-GMAT EarthView.Maximized = true;
+GMAT EarthView.UpperLeft = [ 0.08294930875576037 0.1511904761904762 ];
+GMAT EarthView.Size = [ 0.5878867676102699 0.8297619047619048 ];
+GMAT EarthView.RelativeZOrder = 490;
+GMAT EarthView.Maximized = false;
 GMAT EarthView.Add = {DALA_Sat, DALA_SatFine, Earth};
 GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
 GMAT EarthView.DrawObject = [ true true true ];
@@ -406,10 +473,10 @@ GMAT EarthView.EnableConstellations = Off;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = All;
-GMAT SolarSystemView.UpperLeft = [ -0.1187077385424493 -37.66203703703704 ];
-GMAT SolarSystemView.Size = [ 1.19534184823441 0.9884259259259259 ];
-GMAT SolarSystemView.RelativeZOrder = 244;
-GMAT SolarSystemView.Maximized = true;
+GMAT SolarSystemView.UpperLeft = [ -0.1178406846609612 -37.57142857142857 ];
+GMAT SolarSystemView.Size = [ 1.194206714944042 0.9880952380952381 ];
+GMAT SolarSystemView.RelativeZOrder = 140;
+GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {DALA_Sat, DALA_SatFine, Earth, Sun, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
 GMAT SolarSystemView.DrawObject = [ true true true true true ];
@@ -438,9 +505,9 @@ GMAT SolarSystemView.EnableConstellations = Off;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = All;
-GMAT JupiterView.UpperLeft = [ -0.1269722013523666 0.1331018518518519 ];
-GMAT JupiterView.Size = [ 1.08564988730278 1.109953703703704 ];
-GMAT JupiterView.RelativeZOrder = 238;
+GMAT JupiterView.UpperLeft = [ -0.4963791968400263 0.2904761904761905 ];
+GMAT JupiterView.Size = [ 1.084265964450296 1.107142857142857 ];
+GMAT JupiterView.RelativeZOrder = 486;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {DALA_Sat, DALA_SatFine, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -469,18 +536,18 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = Off;
 
 Create DynamicDataDisplay TABLE;
-GMAT TABLE.UpperLeft = [ 0.1825694966190834 0.2106481481481481 ];
-GMAT TABLE.Size = [ 0.8970698722764838 1.180555555555556 ];
-GMAT TABLE.RelativeZOrder = 242;
-GMAT TABLE.Maximized = true;
-GMAT TABLE.AddParameters = {1, VinfX_E, alpha_E, Hp_Jup, dV_HM};
-GMAT TABLE.AddParameters = {2, VinfY_E, delta_E, Rp_Jup, dV_MCM};
-GMAT TABLE.AddParameters = {3, VinfZ_E, BVAZI_E, INC_final, dV_FM};
-GMAT TABLE.AddParameters = {4, '', C3_E, BVAZI_Jup, dV};
-GMAT TABLE.RowTextColors = {1, [0 0 0], [0 0 0], [0 0 0], [0 0 0]};
-GMAT TABLE.RowTextColors = {2, [0 0 0], [0 0 0], [0 0 0], [0 0 0]};
-GMAT TABLE.RowTextColors = {3, [0 0 0], [0 0 0], [0 0 0], [0 0 0]};
-GMAT TABLE.RowTextColors = {4, [0 0 0], [0 0 0], [0 0 0], [0 0 0]};
+GMAT TABLE.UpperLeft = [ -0.1296905859117841 0.09761904761904762 ];
+GMAT TABLE.Size = [ 0.9736668861092824 1.238095238095238 ];
+GMAT TABLE.RelativeZOrder = 510;
+GMAT TABLE.Maximized = false;
+GMAT TABLE.AddParameters = {1, VinfX_E, alpha_E, Hp_Jup, dV_HM, Mp, tb_HM};
+GMAT TABLE.AddParameters = {2, VinfY_E, delta_E, Rp_Jup, dV_MCM, M0, tb_MCM};
+GMAT TABLE.AddParameters = {3, VinfZ_E, BVAZI_E, INC_final, dV_FM, Mf_HM, tb_FM};
+GMAT TABLE.AddParameters = {4, '', C3_E, BVAZI_Jup, dV_TOT, Mf_MCM, ''};
+GMAT TABLE.RowTextColors = {1, [0 0 0], [0 0 0], [0 0 0], [0 0 0], [0 0 0], [0 0 0]};
+GMAT TABLE.RowTextColors = {2, [0 0 0], [0 0 0], [0 0 0], [0 0 0], [0 0 0], [0 0 0]};
+GMAT TABLE.RowTextColors = {3, [0 0 0], [0 0 0], [0 0 0], [0 0 0], [0 0 0], [0 0 0]};
+GMAT TABLE.RowTextColors = {4, [0 0 0], [0 0 0], [0 0 0], [0 0 0], [0 0 0], [0 0 0]};
 GMAT TABLE.WarnColor = [218 165 32];
 GMAT TABLE.CritColor = [255 0 0];
 
@@ -506,10 +573,11 @@ GMAT REPORT.WriteReport = true;
 %----------------------------------------
 Create Variable CASE TOF maxStep JupiterTOL VinfX_E VinfY_E VinfZ_E INC_inicial phi_E Rp_E;
 Create Variable C3_E alpha_E delta_E BVAZI_E TOF_MCM Hp_Jup Rp_Jup phi_Jup BVAZI_Jup delta_Jup;
-Create Variable INC_final Vinf_J VinfX_J VinfY_J VinfZ_J ECC dV_HM dV_MCM dV_FM dV;
+Create Variable INC_final Vinf_J VinfX_J VinfY_J VinfZ_J ECC dV_HM dV_MCM dV_FM dV_TOT;
+Create Variable M0 Mf_HM Mf_MCM Mf_FM Mp Isp_inj Isp_corr tb_HM tb_MCM tb_FM;
 
 %First iteration parameters
-GMAT CASE = 1; %1 for instant impulse analysis, 2 for finite impulse analysis
+GMAT CASE = 2; %1 for instant impulse analysis, 2 for finite impulse analysis
 GMAT TOF = 1408;
 GMAT maxStep = 0.2;
 GMAT JupiterTOL = 10200000;
@@ -524,7 +592,7 @@ GMAT alpha_E = 0;
 GMAT delta_E = 0;
 GMAT BVAZI_E = 0;
 GMAT TOF_MCM = 0;
-GMAT Hp_Jup = 600;
+GMAT Hp_Jup = 1500;
 GMAT Rp_Jup = 0;
 GMAT phi_Jup = 0;
 GMAT BVAZI_Jup = 0;
@@ -534,11 +602,28 @@ GMAT Vinf_J = 0;
 GMAT VinfX_J = 0;
 GMAT VinfY_J = 0;
 GMAT VinfZ_J = 0;
-GMAT ECC = 0.1;
+GMAT ECC = 0.6;
 GMAT dV_HM = 0;
 GMAT dV_MCM = 0;
 GMAT dV_FM = 0;
-GMAT dV = 0;
+GMAT dV_TOT = 0;
+GMAT M0 = 0;
+GMAT Mf_HM = 0;
+GMAT Mf_MCM = 0;
+GMAT Mf_FM = 500;
+GMAT Mp = 0;
+GMAT Isp_inj = 380;
+GMAT Isp_corr = 300;
+GMAT tb_HM = 0;
+GMAT tb_MCM = 0;
+GMAT tb_FM = 0;
+
+
+
+
+
+
+
 
 
 
@@ -628,6 +713,7 @@ If 'Instant analysis' CASE == 1
       Propagate 'PropFly-by' NearJupiter(DALA_SatFine) {DALA_SatFine.Jupiter.RMAG = 48.2e6};
    EndIf;
    If 'Jup_orbit' ECC < 1
+      
       Target 'TargetOrbit' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
          Vary 'VaryVx' DC1(FI.Element1 = -16, {Perturbation = 0.0001, Lower = -15, Upper = 15, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
          Vary 'VaryVy' DC1(FI.Element2 = -5, {Perturbation = 0.0001, Lower = -15, Upper = 15, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
@@ -645,9 +731,31 @@ If 'Instant analysis' CASE == 1
       Propagate 'PropInJup' NearJupiter(DALA_SatFine) {DALA_SatFine.ElapsedDays = 2};
    EndIf;
    BeginScript 'getDV'
-      GMAT dV = dV_HM + dV_MCM + dV_FM;
+      GMAT dV_TOT = abs(dV_HM) + abs(dV_MCM) + abs(dV_FM);
+      GMAT Mf_MCM = Mf_FM * exp(dV_FM*1000/(Isp_inj*9.81));
+      GMAT Mf_HM = Mf_MCM * exp(dV_MCM*1000/(Isp_corr*9.81));
+      GMAT M0 = Mf_HM * exp(dV_HM*1000/(Isp_inj*9.81));
+      GMAT Mp = M0 - Mf_FM;
    EndScript;
    UpdateDynamicData 'UpdateTable4' TABLE;
 EndIf;
 If 'Finite analysis' CASE == 2
+   Target 'TargetJupiter' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
+      Vary 'VaryVx' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection1 = 1, {Perturbation = 0.0001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVy' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection2 = 0, {Perturbation = 0.0001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVz' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection3 = 0, {Perturbation = 0.0001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'Vary_tb_HM' DC1(tb_HM = 10, {Perturbation = 0.0001, Lower = 0.0, Upper = 300, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      BeginFiniteBurn 'Begin_HF' HF(DALA_SatFinite);
+      Propagate 'PropBurn' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.ElapsedSecs = tb_HM};
+      EndFiniteBurn 'End_HF' HF(DALA_SatFinite);
+      
+      BeginScript 'ExtractVinf_E'
+         GMAT VinfX_E = DALA_SatFinite.EarthMJ2000Eq.VX;
+         GMAT VinfY_E = DALA_SatFinite.EarthMJ2000Eq.VY;
+         GMAT VinfZ_E = DALA_SatFinite.EarthMJ2000Eq.VZ;
+      EndScript;
+      Propagate 'PropToJupiter' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.ElapsedDays = TOF, OrbitColor = [255 0 0]};
+      Achieve 'ReachJupiter' DC1(DALA_SatFinite.Jupiter.RMAG = 0, {Tolerance = JupiterTOL});
+   EndTarget;  % For targeter DC1
+   Stop;
 EndIf;
