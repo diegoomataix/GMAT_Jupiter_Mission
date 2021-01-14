@@ -1,0 +1,15 @@
+-Hemos corregido la definición de dV, que antes la confundíamos con la que dábamos desde el centro de la Tierra
+
+-Hemos desacoplado la maniobra de corrección tangencial de la maniobra de corrección de la de inclinación
+
+-Hemos movido los tiempos de encendido de los motores de corrección y el cambio de inclinación se da más tarde
+
+-Ahora el Achieve es para la inclinación de la órbita final y no el BVAZI. 
+
+-Conclusion: Ahora nos salen cosas razonables en las masas. 
+
+To do:
+-El BVAZI estaba mal definido, comprobar si cambiando la definición también llega igual.
+-Habría que optimizar el TOF porque ahora mismo las dos correcciones se dan en el mismo tiempo.
+-¿Cambiar motor con el que se cambia la inclinación?
++Impulsos finitos y accesos...
