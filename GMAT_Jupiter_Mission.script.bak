@@ -56,10 +56,10 @@ GMAT DALA_SatFine.Epoch = '13 Dec 2027 11:59:28.000';
 GMAT DALA_SatFine.CoordinateSystem = EarthMJ2000Eq;
 GMAT DALA_SatFine.DisplayStateType = OutgoingAsymptote;
 GMAT DALA_SatFine.OutgoingRadPer = 7299.999999999995;
-GMAT DALA_SatFine.OutgoingC3Energy = 79.56675299999993;
+GMAT DALA_SatFine.OutgoingC3Energy = 79.56675299999995;
 GMAT DALA_SatFine.OutgoingRHA = 171.5589927;
-GMAT DALA_SatFine.OutgoingDHA = 4.278109750000017;
-GMAT DALA_SatFine.OutgoingBVAZI = 136.8695255634;
+GMAT DALA_SatFine.OutgoingDHA = 4.278109750000018;
+GMAT DALA_SatFine.OutgoingBVAZI = 113.7580819076368;
 GMAT DALA_SatFine.TA = 360;
 GMAT DALA_SatFine.DryMass = 500;
 GMAT DALA_SatFine.Cd = 2.2;
@@ -103,12 +103,12 @@ GMAT DALA_SatFinite.DateFormat = UTCGregorian;
 GMAT DALA_SatFinite.Epoch = '13 Dec 2027 11:59:28.000';
 GMAT DALA_SatFinite.CoordinateSystem = EarthMJ2000Eq;
 GMAT DALA_SatFinite.DisplayStateType = Keplerian;
-GMAT DALA_SatFinite.SMA = 7299.999999999995;
-GMAT DALA_SatFinite.ECC = 1.301293584003401e-16;
-GMAT DALA_SatFinite.INC = 55.00000000000001;
-GMAT DALA_SatFinite.RAAN = 0;
-GMAT DALA_SatFinite.AOP = 0;
-GMAT DALA_SatFinite.TA = 0;
+GMAT DALA_SatFinite.SMA = 7299.999999999996;
+GMAT DALA_SatFinite.ECC = 0.009999999999998153;
+GMAT DALA_SatFinite.INC = 54.99999999999999;
+GMAT DALA_SatFinite.RAAN = 360;
+GMAT DALA_SatFinite.AOP = 360;
+GMAT DALA_SatFinite.TA = 0.9999999999893302;
 GMAT DALA_SatFinite.DryMass = 500;
 GMAT DALA_SatFinite.Cd = 2.2;
 GMAT DALA_SatFinite.Cr = 1.8;
@@ -249,6 +249,8 @@ GMAT Thruster_corr.K13 = 0;
 GMAT Thruster_corr.K14 = 0;
 GMAT Thruster_corr.K15 = 0;
 GMAT Thruster_corr.K16 = 0;
+
+
 
 
 
@@ -466,9 +468,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView EarthView;
 GMAT EarthView.SolverIterations = Current;
-GMAT EarthView.UpperLeft = [ 0.1245039682539683 0.02859778597785978 ];
-GMAT EarthView.Size = [ 0.6086309523809523 0.775830258302583 ];
-GMAT EarthView.RelativeZOrder = 59;
+GMAT EarthView.UpperLeft = [ 0.1961538461538462 0.3597785977859779 ];
+GMAT EarthView.Size = [ 0.6086538461538461 0.775830258302583 ];
+GMAT EarthView.RelativeZOrder = 2703;
 GMAT EarthView.Maximized = false;
 GMAT EarthView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Earth};
 GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
@@ -498,9 +500,9 @@ GMAT EarthView.EnableConstellations = Off;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = All;
-GMAT SolarSystemView.UpperLeft = [ -0.1324404761904762 0.1254612546125461 ];
-GMAT SolarSystemView.Size = [ 1.036706349206349 0.8699261992619927 ];
-GMAT SolarSystemView.RelativeZOrder = 30;
+GMAT SolarSystemView.UpperLeft = [ 0.1240384615384615 0.04428044280442804 ];
+GMAT SolarSystemView.Size = [ 0.8245192307692307 0.8699261992619927 ];
+GMAT SolarSystemView.RelativeZOrder = 2689;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Earth, Sun, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -530,9 +532,9 @@ GMAT SolarSystemView.EnableConstellations = Off;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = All;
-GMAT JupiterView.UpperLeft = [ -0.03869047619047619 0.05258302583025831 ];
-GMAT JupiterView.Size = [ 1.098214285714286 1.066420664206642 ];
-GMAT JupiterView.RelativeZOrder = 61;
+GMAT JupiterView.UpperLeft = [ -0.1673076923076923 0.4732472324723247 ];
+GMAT JupiterView.Size = [ 1.090865384615385 1.051660516605166 ];
+GMAT JupiterView.RelativeZOrder = 2673;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -561,9 +563,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = Off;
 
 Create DynamicDataDisplay TABLE;
-GMAT TABLE.UpperLeft = [ 0.0615079365079365 0.1429889298892989 ];
-GMAT TABLE.Size = [ 1.155753968253968 1.199261992619926 ];
-GMAT TABLE.RelativeZOrder = 20;
+GMAT TABLE.UpperLeft = [ 0.4264423076923077 0.1263837638376384 ];
+GMAT TABLE.Size = [ 0.7298076923076923 1.199261992619926 ];
+GMAT TABLE.RelativeZOrder = 2635;
 GMAT TABLE.Maximized = false;
 GMAT TABLE.AddParameters = {1, VinfX_E, alpha_E, Hp_Jup, dV_HM, Mp, tb_HM};
 GMAT TABLE.AddParameters = {2, VinfY_E, delta_E, Rp_Jup, dV_MCM, M0, tb_MCM};
@@ -603,7 +605,7 @@ Create Variable M0 Mf_HM Mf_MCM Mf_FM Mp Isp_inj Isp_corr tb_HM tb_MCM tb_FM;
 Create Variable TOF_MCM_inc;
 
 %First iteration parameters
-GMAT CASE = 2; %1 for instant impulse analysis, 2 for finite impulse analysis
+GMAT CASE = 1; %1 for instant impulse analysis, 2 for finite impulse analysis
 GMAT TOF = 1408;
 GMAT maxStep = 0.2;
 GMAT JupiterTOL = 10200000;
@@ -644,6 +646,8 @@ GMAT tb_HM = 0;
 GMAT tb_MCM = 0;
 GMAT tb_FM = 0;
 GMAT TOF_MCM_inc = 0;
+
+
 
 
 
@@ -781,25 +785,20 @@ If 'Instant analysis' CASE == 1
    EndScript;
    UpdateDynamicData 'UpdateTable4' TABLE;
 EndIf;
-If 'Finite analysis' CASE == 2
-   Propagate 'PropParking' NearEarth(DALA_SatFinite) {DALA_Sat.ElapsedDays = 2};
-   Stop;
-   Target 'TargetJupiter' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
-      Vary 'VaryVx' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection1 = 1, {Perturbation = 0.0001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryVy' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection2 = -0.001895614251420665, {Perturbation = 0.0001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryVz' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection3 = 0.02991295619552763, {Perturbation = 0.0001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'Vary_tb_HM' DC1(tb_HM = 100, {Perturbation = 0.0001, Lower = 50, Upper = 300, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+If 'Finite analysis' CASE == 1
+   Propagate 'PropParking' NearEarth(DALA_SatFinite) {DALA_SatFinite.Earth.Periapsis, OrbitColor = [44 211 157]};
+   Target 'TargetOutgoingH' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
+      Vary 'VaryVx' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection1 = 1, {Perturbation = 0.0001, Lower = 0.9, Upper = 1.1, MaxStep = 0.05, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVy' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection2 = 0, {Perturbation = 0.0001, Lower = -0.1, Upper = 0.1, MaxStep = 0.01, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVz' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection3 = 0, {Perturbation = 0.0001, Lower = 0.0, Upper = 4, MaxStep = 0.1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'Vary_tb_HM' DC1(tb_HM = 94.39755998551912, {Perturbation = 0.0001, Lower = 0, Upper = 200, MaxStep = 1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
       BeginFiniteBurn 'Begin_HF' HF(DALA_SatFinite);
       Propagate 'PropBurn' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.ElapsedSecs = tb_HM, OrbitColor = [255 128 64]};
       EndFiniteBurn 'End_HF' HF(DALA_SatFinite);
-      
-      BeginScript 'ExtractVinf_E'
-         GMAT VinfX_E = DALA_SatFinite.EarthMJ2000Eq.VX;
-         GMAT VinfY_E = DALA_SatFinite.EarthMJ2000Eq.VY;
-         GMAT VinfZ_E = DALA_SatFinite.EarthMJ2000Eq.VZ;
-      EndScript;
-      Propagate 'PropToJupiter' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.ElapsedDays = TOF, OrbitColor = [255 0 0]};
-      Achieve 'ReachJupiter' DC1(DALA_SatFinite.Jupiter.RMAG = 0, {Tolerance = JupiterTOL});
+      Propagate 'PropToOutgoingH' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.ElapsedDays = 1, OrbitColor = [255 128 255]};
+      Achieve 'AchieveAlpha' DC1(DALA_SatFinite.EarthMJ2000Eq.OutgoingRHA = alpha_E, {Tolerance = 2});
+      Achieve 'AchieveDelta' DC1(DALA_SatFinite.EarthMJ2000Eq.OutgoingDHA = delta_E, {Tolerance = 1});
+      Achieve 'AchieveC3_E' DC1(DALA_SatFinite.Earth.OutgoingC3Energy = C3_E, {Tolerance = 5});
    EndTarget;  % For targeter DC1
-   Stop;
+   UpdateDynamicData 'UpdateTable6' TABLE;
 EndIf;

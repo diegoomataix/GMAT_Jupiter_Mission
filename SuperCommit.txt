@@ -1,15 +1,31 @@
--Hemos corregido la definición de dV, que antes la confundíamos con la que dábamos desde el centro de la Tierra
+/***********Actividades realizadas***********\
+-He cambiado el propagador en PropBurn al NearEarthProp (antes estaba en DeepSpace)
+-He cambiado el propagador de PropToOutgoingH: estaba en 1 dia y lo he cambiado para que propague hasta la SOI de la Tierra;
+					       también lo he cambiado de sitio y lo he sacado del Target (para que primero alcance los 
+						valores que queremos de la outgoing orbit y luego propague en ella)
+				   
+-He cambiado los limites de los Vary en las velocidades. Sé que Andrés no es partidario de esto, pero tengo un argumento: los vectores del 
+motor están definidos según el triedro VNB ***CON RESPECTO AL SOL***, lo que quiere decir que, relativo a la Tierra, tendrá componente en 
+las 3 direcciones (lo teníamos definido solo en la dirección Vx). Y bueno, he subido los limites en los que se mueve porque si queremos variar
+el Vx relativo a la Tierra, habrá que variar en las 3 direcciones relativas al Sol (o al menos así lo veo yo).
 
--Hemos desacoplado la maniobra de corrección tangencial de la maniobra de corrección de la de inclinación
+/***********Situación actual:***********\
+-El propagador a la hipérbola de salida de la Tierra converge, pero atraviesa la Tierra y eso está feo. He probado a cambiar el AOP de 0 a 90
+para que, en lugar de salir de detrás de la Tierra (porque así la atraviesa) salga desde arriba. Pero parece que las cosas no convergen tan
+bien así. 
 
--Hemos movido los tiempos de encendido de los motores de corrección y el cambio de inclinación se da más tarde
+/***********Inquietudes: ***********\
+-¿Por qué la hipérbola de salida que hacíamos en el primer análisis es tan diferente a la que tenemos ahora, si le proporcionábamos el Rp y
+la inclinación inicial? ¿No debería salir como desde la órbita de aparcamiento?
+-¿Se puede cambiar el AOP a tu antojo (teniendo en cuenta que la órbita de aparcamiento sería circular) para que la hipérbola de salida sea 
+más fácil de lograr?
+-Hay órbitas de llegada que hemos obtenido dándole la altura del perigeo y la inclinación como Achieve. Me perturba que se pueda hacer así 
+porque entonces, ¿qué sentido tiene la definición del plano B y toda esa pesca? O sea, tiene sentido, pero me perturba. 
 
--Ahora el Achieve es para la inclinación de la órbita final y no el BVAZI. 
-
--Conclusion: Ahora nos salen cosas razonables en las masas. 
-
-To do:
+/***********To do:***********\
 -El BVAZI estaba mal definido, comprobar si cambiando la definición también llega igual.
 -Habría que optimizar el TOF porque ahora mismo las dos correcciones se dan en el mismo tiempo.
 -¿Cambiar motor con el que se cambia la inclinación?
 +Impulsos finitos y accesos...
+
+
