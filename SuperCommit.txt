@@ -1,4 +1,11 @@
 /***********Actividades realizadas***********\
+18 01 2021
+-He cambiado los tiempos de maniobras de medio curso y he añadido un stop a los propagadores de un año por si acaso no alcanzamos Jupiter que no se pierda en el espacio
+-He puesto las órbitas de impulsos instantáneos con los colores rojo-naranja-amarillo y los de finitos cian-azul oscuro-morado para diferenciarlas mejor
+-He añadido los contactos y los eclipses para el DALA_SatFine durante un año, la órbita final ahora propaga un año (para ver cómo variaba), si se cambia esto también hay que cambiar el tiempo que lee el acceso
+-He metido también todo lo de impulsos finitos
+
+17 01 2021
 -He cambiado el propagador en PropBurn al NearEarth (antes estaba en DeepSpace)
 -He cambiado el propagador de PropToOutgoingH:  también lo he cambiado a NearEarth;
 						propagaba 1 dia y lo he cambiado para que propague hasta la SOI de la Tierra;
@@ -11,6 +18,7 @@ las 3 direcciones (lo teníamos definido solo en la dirección Vx). Y bueno, he su
 el Vx relativo a la Tierra, habrá que variar en las 3 direcciones relativas al Sol (o al menos así lo veo yo).
 
 /***********Situación actual:***********\
+
 -El propagador a la hipérbola de salida de la Tierra converge y parece que va paralelo al que definimos con impulsos instantáneos (yuhuuu).
 He propagado hasta el momento que demos la maniobra de corrección, porque he encontrado un fallo (véase sección To do) y quiero arreglarlo 
 con vosotrxs antes de avanzar con eso. 
@@ -21,7 +29,9 @@ cambios si no visualizáis a lo que me refiero). Pero parece que le costaba más c
 AOF de 70 porque parecia un punto bueno pa empezar la hipérbola y ha quedado preciosa. Pero no os hagáis ilusiones (véase sección Inquietudes)
 
 /***********Inquietudes: ***********\
--Ahora el dV sale super bajo wtfffff por qué? Si podemos ir a Jupiter por dos centavos.
+
+-He visto que hay optimizadores, lo mismo podemos hacer variar los TOF_MCM con eso
+
 -¿Por qué la hipérbola de salida que hacíamos en el primer análisis es tan diferente a la que tenemos ahora, si le proporcionábamos el Rp y
 la inclinación inicial? ¿No debería salir como desde la órbita de aparcamiento?
 -¿Se puede cambiar el AOP a tu antojo (teniendo en cuenta que la órbita de aparcamiento sería circular) para que la hipérbola de salida sea 
@@ -30,17 +40,28 @@ más fácil de lograr?
 porque entonces, ¿qué sentido tiene la definición del plano B y toda esa pesca? O sea, tiene sentido, pero me perturba. 
 
 /***********To do:***********\
--IMPORTANTE: En el Instant analysis, la maniobra de corrección para la inclinación está definida para Dala_Sat en lugar de Dala_SatFine. 
-Es decir, que hemos llegado a Júpiter sin haber corregido la inclinación a medio camino, y luego la maniobra FM la habrá adaptado para la 
-órbita final que queremos. Os recuerdo que hicimos esto porque queríamos cambiar la inclinación antes de la maniobra de frenado, de modo 
-que estuviéramos más lejos de Júpiter y por tanto la velocidad fuese menor. Opino que si quisiéramos hacer esto, tenemos que arreglar el 
-fallo que hay y ponerle un Target con un Achieve de inclinación antes del "TargetOrbit".
+
+-Hacer que converja la maniobra de corrección para impulsos finitos
+
+- Evolución de la altura en la órbita final
+- Mass budget para impulsos finitos 
+- Dv Budget para impulsos finitos 
+- Traza sobre el planeta objetivo
+- Calcular cuanto se podría incrementar la masa seca del vehículo si se usa la opción A) en
+lugar de la B) o la C)
+
 -El BVAZI estaba mal definido, comprobar si cambiando la definición también llega igual.
--Habría que optimizar el TOF porque ahora mismo las dos correcciones se dan en el mismo tiempo.
+-Habría que optimizar el TOF.
 -¿Cambiar motor con el que se cambia la inclinación? ---> Opino que no, corregimos con el motor de
-+Impulsos finitos y accesos...
 
 /************Animos**************\
+
+No os rindáis, que la vida es eso
+continuar el viaje,
+perseguir a Júpiter,
+optimizar los tiempos,
+correr los casos y destapar el cielo.
+
 Venga chicxs, yo os voy a reconocer que estoy agobiada porque llevo fatal los exámenes y los trabajos, pero creo que lo estamos haciendo muy
 bien y que a pesar de los baches que nos pone la vida estamos saliendo adelante. DALA es un proyecto exigente, y por tanto no es fácil, 
 pero cuando se logre será muy satisfactorio. Un saludo. Andrea. 
