@@ -103,11 +103,11 @@ GMAT DALA_SatFinite.DateFormat = UTCGregorian;
 GMAT DALA_SatFinite.Epoch = '13 Dec 2027 11:59:28.000';
 GMAT DALA_SatFinite.CoordinateSystem = EarthMJ2000Eq;
 GMAT DALA_SatFinite.DisplayStateType = Keplerian;
-GMAT DALA_SatFinite.SMA = 7299.999999999995;
-GMAT DALA_SatFinite.ECC = 0.009999999999997901;
+GMAT DALA_SatFinite.SMA = 7299.999999999993;
+GMAT DALA_SatFinite.ECC = 0.009999999999997899;
 GMAT DALA_SatFinite.INC = 55.00000000000001;
 GMAT DALA_SatFinite.RAAN = 360;
-GMAT DALA_SatFinite.AOP = 90;
+GMAT DALA_SatFinite.AOP = 70;
 GMAT DALA_SatFinite.TA = 0;
 GMAT DALA_SatFinite.DryMass = 500;
 GMAT DALA_SatFinite.Cd = 2.2;
@@ -249,6 +249,7 @@ GMAT Thruster_corr.K13 = 0;
 GMAT Thruster_corr.K14 = 0;
 GMAT Thruster_corr.K15 = 0;
 GMAT Thruster_corr.K16 = 0;
+
 
 
 
@@ -472,9 +473,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView EarthView;
 GMAT EarthView.SolverIterations = Current;
-GMAT EarthView.UpperLeft = [ 0.06201550387596899 0.4392857142857143 ];
-GMAT EarthView.Size = [ 0.6085271317829457 0.775 ];
-GMAT EarthView.RelativeZOrder = 1280;
+GMAT EarthView.UpperLeft = [ -0.07172131147540983 0.2011904761904762 ];
+GMAT EarthView.Size = [ 0.7062841530054644 0.775 ];
+GMAT EarthView.RelativeZOrder = 375;
 GMAT EarthView.Maximized = false;
 GMAT EarthView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Earth};
 GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
@@ -504,9 +505,9 @@ GMAT EarthView.EnableConstellations = Off;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = All;
-GMAT SolarSystemView.UpperLeft = [ 0.04909560723514212 0.5630952380952381 ];
-GMAT SolarSystemView.Size = [ 0.8242894056847545 0.8690476190476191 ];
-GMAT SolarSystemView.RelativeZOrder = 974;
+GMAT SolarSystemView.UpperLeft = [ -0.116120218579235 0.05714285714285714 ];
+GMAT SolarSystemView.Size = [ 0.8237704918032787 0.8690476190476191 ];
+GMAT SolarSystemView.RelativeZOrder = 511;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Earth, Sun, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -536,9 +537,9 @@ GMAT SolarSystemView.EnableConstellations = Off;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = All;
-GMAT JupiterView.UpperLeft = [ -0.1169250645994832 0.1452380952380952 ];
-GMAT JupiterView.Size = [ 1.085271317829457 1.041666666666667 ];
-GMAT JupiterView.RelativeZOrder = 1238;
+GMAT JupiterView.UpperLeft = [ -0.5683060109289617 0.4785714285714286 ];
+GMAT JupiterView.Size = [ 1.083333333333333 1.038095238095238 ];
+GMAT JupiterView.RelativeZOrder = 379;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -567,9 +568,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = Off;
 
 Create DynamicDataDisplay TABLE;
-GMAT TABLE.UpperLeft = [ -0.3210594315245478 0.8357142857142857 ];
-GMAT TABLE.Size = [ 1.017441860465116 1.238095238095238 ];
-GMAT TABLE.RelativeZOrder = 1256;
+GMAT TABLE.UpperLeft = [ -0.1905737704918033 0.4726190476190476 ];
+GMAT TABLE.Size = [ 1.200819672131147 1.238095238095238 ];
+GMAT TABLE.RelativeZOrder = 343;
 GMAT TABLE.Maximized = false;
 GMAT TABLE.AddParameters = {1, VinfX_E, alpha_E, Hp_Jup, dV_HM, Mp, tb_HM};
 GMAT TABLE.AddParameters = {2, VinfY_E, delta_E, Rp_Jup, dV_MCM, M0, tb_MCM};
@@ -650,6 +651,7 @@ GMAT tb_HM = 0;
 GMAT tb_MCM = 0;
 GMAT tb_FM = 0;
 GMAT TOF_MCM_inc = 0;
+
 
 
 
@@ -796,17 +798,18 @@ EndIf;
 If 'Finite analysis' CASE == 1
    Propagate 'PropParking' NearEarth(DALA_SatFinite) {DALA_SatFinite.Earth.Periapsis, OrbitColor = [44 211 157]};
    Target 'TargetOutgoingH' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
-      Vary 'VaryVx' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection1 = 7.082179263510404, {Perturbation = 0.0001, Lower = 0, Upper = 14, MaxStep = 0.05, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryVy' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection2 = 1.490000000000002, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.01, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryVz' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection3 = 1, {Perturbation = 0.0001, Lower = -1, Upper = 1, MaxStep = 0.1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'Vary_tb_HM' DC1(tb_HM = 97.75069323517657, {Perturbation = 0.0001, Lower = 0, Upper = 200, MaxStep = 1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVx' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection1 = 2.136866581668591, {Perturbation = 0.0001, Lower = 0, Upper = 14, MaxStep = 0.05, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVy' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection2 = 0.4296790920039847, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.01, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVz' DC1(DALA_SatFinite.Thruster_Inj.ThrustDirection3 = 1.1, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'Vary_tb_HM' DC1(tb_HM = 93.1827334342195, {Perturbation = 0.0001, Lower = 0, Upper = 200, MaxStep = 1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
       BeginFiniteBurn 'Begin_HF' HF(DALA_SatFinite);
       Propagate 'PropBurn' NearEarth(DALA_SatFinite) {DALA_SatFinite.ElapsedSecs = tb_HM, OrbitColor = [255 128 64]};
       EndFiniteBurn 'End_HF' HF(DALA_SatFinite);
-      Achieve 'AchieveAlpha' DC1(DALA_SatFinite.EarthMJ2000Eq.OutgoingRHA = alpha_E, {Tolerance = 2});
+      Achieve 'AchieveAlpha' DC1(DALA_SatFinite.EarthMJ2000Eq.OutgoingRHA = alpha_E, {Tolerance = 1});
       Achieve 'AchieveDelta' DC1(DALA_SatFinite.EarthMJ2000Eq.OutgoingDHA = delta_E, {Tolerance = 1});
-      Achieve 'AchieveC3_E' DC1(DALA_SatFinite.Earth.OutgoingC3Energy = C3_E, {Tolerance = 5});
+      Achieve 'AchieveC3_E' DC1(DALA_SatFinite.Earth.OutgoingC3Energy = C3_E, {Tolerance = 3});
    EndTarget;  % For targeter DC1
    UpdateDynamicData 'UpdateTable6' TABLE;
    Propagate 'PropToOutgoingH' NearEarth(DALA_SatFinite) {DALA_SatFinite.Earth.RMAG = 0.924e6, OrbitColor = [255 128 255]};
+   Propagate 'PropToCorr_tan' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.ElapsedDays = TOF_MCM_tan};
 EndIf;

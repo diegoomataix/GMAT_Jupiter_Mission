@@ -1,7 +1,8 @@
 /***********Actividades realizadas***********\
--He cambiado el propagador en PropBurn al NearEarthProp (antes estaba en DeepSpace)
--He cambiado el propagador de PropToOutgoingH: estaba en 1 dia y lo he cambiado para que propague hasta la SOI de la Tierra;
-					       también lo he cambiado de sitio y lo he sacado del Target (para que primero alcance los 
+-He cambiado el propagador en PropBurn al NearEarth (antes estaba en DeepSpace)
+-He cambiado el propagador de PropToOutgoingH:  también lo he cambiado a NearEarth;
+						propagaba 1 dia y lo he cambiado para que propague hasta la SOI de la Tierra;
+						también lo he cambiado de sitio y lo he sacado del Target (para que primero alcance los 
 						valores que queremos de la outgoing orbit y luego propague en ella)
 				   
 -He cambiado los limites de los Vary en las velocidades. Sé que Andrés no es partidario de esto, pero tengo un argumento: los vectores del 
@@ -10,11 +11,17 @@ las 3 direcciones (lo teníamos definido solo en la dirección Vx). Y bueno, he su
 el Vx relativo a la Tierra, habrá que variar en las 3 direcciones relativas al Sol (o al menos así lo veo yo).
 
 /***********Situación actual:***********\
--El propagador a la hipérbola de salida de la Tierra converge, pero atraviesa la Tierra y eso está feo. He probado a cambiar el AOP de 0 a 90
-para que, en lugar de salir de detrás de la Tierra (porque así la atraviesa) salga desde arriba. Pero parece que las cosas no convergen tan
-bien así. 
+-El propagador a la hipérbola de salida de la Tierra converge y parece que va paralelo al que definimos con impulsos instantáneos (yuhuuu).
+He propagado hasta el momento que demos la maniobra de corrección, porque he encontrado un fallo (véase sección To do) y quiero arreglarlo 
+con vosotrxs antes de avanzar con eso. 
+
+-Antes convergía para un AOP de 0 (es decir, estaba como por detrás de la tierra), pero la hipérbola de salida atravesaba la Tierra y eso 
+está feo. Probé a cambiar el AOP de 0 a 90 para que, en lugar de salir de detrás de la Tierra salga desde arriba (os animo a hacer esos 
+cambios si no visualizáis a lo que me refiero). Pero parece que le costaba más coger la forma de la hipérbola, así que finalmente le di un 
+AOF de 70 porque parecia un punto bueno pa empezar la hipérbola y ha quedado preciosa. Pero no os hagáis ilusiones (véase sección Inquietudes)
 
 /***********Inquietudes: ***********\
+-Ahora el dV sale super bajo wtfffff por qué? Si podemos ir a Jupiter por dos centavos.
 -¿Por qué la hipérbola de salida que hacíamos en el primer análisis es tan diferente a la que tenemos ahora, si le proporcionábamos el Rp y
 la inclinación inicial? ¿No debería salir como desde la órbita de aparcamiento?
 -¿Se puede cambiar el AOP a tu antojo (teniendo en cuenta que la órbita de aparcamiento sería circular) para que la hipérbola de salida sea 
@@ -23,9 +30,19 @@ más fácil de lograr?
 porque entonces, ¿qué sentido tiene la definición del plano B y toda esa pesca? O sea, tiene sentido, pero me perturba. 
 
 /***********To do:***********\
+-IMPORTANTE: En el Instant analysis, la maniobra de corrección para la inclinación está definida para Dala_Sat en lugar de Dala_SatFine. 
+Es decir, que hemos llegado a Júpiter sin haber corregido la inclinación a medio camino, y luego la maniobra FM la habrá adaptado para la 
+órbita final que queremos. Os recuerdo que hicimos esto porque queríamos cambiar la inclinación antes de la maniobra de frenado, de modo 
+que estuviéramos más lejos de Júpiter y por tanto la velocidad fuese menor. Opino que si quisiéramos hacer esto, tenemos que arreglar el 
+fallo que hay y ponerle un Target con un Achieve de inclinación antes del "TargetOrbit".
 -El BVAZI estaba mal definido, comprobar si cambiando la definición también llega igual.
 -Habría que optimizar el TOF porque ahora mismo las dos correcciones se dan en el mismo tiempo.
--¿Cambiar motor con el que se cambia la inclinación?
+-¿Cambiar motor con el que se cambia la inclinación? ---> Opino que no, corregimos con el motor de
 +Impulsos finitos y accesos...
+
+/************Animos**************\
+Venga chicxs, yo os voy a reconocer que estoy agobiada porque llevo fatal los exámenes y los trabajos, pero creo que lo estamos haciendo muy
+bien y que a pesar de los baches que nos pone la vida estamos saliendo adelante. DALA es un proyecto exigente, y por tanto no es fácil, 
+pero cuando se logre será muy satisfactorio. Un saludo. Andrea. 
 
 
