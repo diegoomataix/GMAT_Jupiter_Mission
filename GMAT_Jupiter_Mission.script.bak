@@ -462,6 +462,8 @@ GMAT Montegancedo.MinimumElevationAngle = 7;
 
 
 
+
+
 %----------------------------------------
 %---------- ForceModels
 %----------------------------------------
@@ -591,7 +593,6 @@ GMAT MCF_tan.Thrusters = {Thruster_MC_tan};
 GMAT MCF_tan.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
 
 Create FiniteBurn MCF_inc;
-GMAT MCF_inc.Thrusters = {Thruster_MC_inc};
 GMAT MCF_inc.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
 
 Create FiniteBurn FF;
@@ -699,9 +700,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView EarthView;
 GMAT EarthView.SolverIterations = Current;
-GMAT EarthView.UpperLeft = [ -0.1372126436781609 0.0625 ];
-GMAT EarthView.Size = [ 0.7255747126436781 0.8761574074074074 ];
-GMAT EarthView.RelativeZOrder = 1769;
+GMAT EarthView.UpperLeft = [ 0.02487244897959184 0.1241299303944316 ];
+GMAT EarthView.Size = [ 0.7251275510204082 0.7505800464037123 ];
+GMAT EarthView.RelativeZOrder = 1679;
 GMAT EarthView.Maximized = false;
 GMAT EarthView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Earth};
 GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
@@ -731,9 +732,9 @@ GMAT EarthView.EnableConstellations = Off;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = All;
-GMAT SolarSystemView.UpperLeft = [ -0.1329022988505747 0.05092592592592592 ];
-GMAT SolarSystemView.Size = [ 1.102729885057471 0.9155092592592593 ];
-GMAT SolarSystemView.RelativeZOrder = 1777;
+GMAT SolarSystemView.UpperLeft = [ -0.07971938775510204 0.5475638051044084 ];
+GMAT SolarSystemView.Size = [ 1.019770408163265 0.888631090487239 ];
+GMAT SolarSystemView.RelativeZOrder = 1793;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Earth, Sun, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -763,9 +764,9 @@ GMAT SolarSystemView.EnableConstellations = Off;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = All;
-GMAT JupiterView.UpperLeft = [ 0.2341954022988506 0.05092592592592592 ];
-GMAT JupiterView.Size = [ 0.5897988505747126 0.7789351851851852 ];
-GMAT JupiterView.RelativeZOrder = 1773;
+GMAT JupiterView.UpperLeft = [ 0.02104591836734694 0.1554524361948956 ];
+GMAT JupiterView.Size = [ 0.6957908163265306 0.5672853828306265 ];
+GMAT JupiterView.RelativeZOrder = 1791;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -794,9 +795,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = Off;
 
 Create DynamicDataDisplay TABLE;
-GMAT TABLE.UpperLeft = [ -0.5316091954022989 0.1296296296296296 ];
-GMAT TABLE.Size = [ 1.308908045977011 1.188657407407407 ];
-GMAT TABLE.RelativeZOrder = 1785;
+GMAT TABLE.UpperLeft = [ -0.07461734693877552 0.6508120649651972 ];
+GMAT TABLE.Size = [ 0.8073979591836735 0.5568445475638051 ];
+GMAT TABLE.RelativeZOrder = 1795;
 GMAT TABLE.Maximized = false;
 GMAT TABLE.AddParameters = {1, VinfX_E, alpha_E, Hp_Jup, dV_HM, Mp};
 GMAT TABLE.AddParameters = {2, VinfY_E, delta_E, Rp_Jup, dV_MCM, Mp_HI};
@@ -818,13 +819,13 @@ GMAT TABLE.WarnColor = [218 165 32];
 GMAT TABLE.CritColor = [255 0 0];
 
 Create DynamicDataDisplay TABLE_FINITE;
-GMAT TABLE_FINITE.UpperLeft = [ 0.2722701149425287 0.08680555555555555 ];
-GMAT TABLE_FINITE.Size = [ 0.6156609195402298 1.074074074074074 ];
-GMAT TABLE_FINITE.RelativeZOrder = 1805;
+GMAT TABLE_FINITE.UpperLeft = [ -0.09821428571428571 0.5533642691415314 ];
+GMAT TABLE_FINITE.Size = [ 0.8482142857142857 0.5986078886310905 ];
+GMAT TABLE_FINITE.RelativeZOrder = 1071;
 GMAT TABLE_FINITE.Maximized = false;
 GMAT TABLE_FINITE.AddParameters = {1, tb_HM, Mp_HF};
 GMAT TABLE_FINITE.AddParameters = {2, tb_MCM_tan, Mp_MCF_tan};
-GMAT TABLE_FINITE.AddParameters = {3, tb_MCM_inc, Mp_MCF_inc};
+GMAT TABLE_FINITE.AddParameters = {3, tb_MCM_inc, ''};
 GMAT TABLE_FINITE.AddParameters = {4, tb_FM, Mp_FF};
 GMAT TABLE_FINITE.RowTextColors = {1, [0 0 0], [0 0 0]};
 GMAT TABLE_FINITE.RowTextColors = {2, [0 0 0], [0 0 0]};
@@ -915,6 +916,8 @@ GMAT Mp_MCF_tan = 0;
 GMAT Mp_MCF_inc = 0;
 GMAT Mp_FF = 0;
 GMAT Mp_F = 0;
+
+
 
 
 
@@ -1127,31 +1130,26 @@ If 'Finite analysis' CASE == 1
    
    Target 'TargetIncomingOrbit' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
       
-      Vary 'VaryVx' DC1(DALA_SatFinite.Thruster_MC_tan.ThrustDirection1 = -1, {Perturbation = 0.001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryVy' DC1(DALA_SatFinite.Thruster_MC_tan.ThrustDirection2 = -1, {Perturbation = 0.001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryVz' DC1(DALA_SatFinite.Thruster_MC_inc.ThrustDirection3 = 0.451, {Perturbation = 0.001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'Vary_tb_MCM_tan' DC1(tb_MCM_tan = 28797.472700639, {Perturbation = 0.0001, Lower = 1e3, Upper = 1e6, MaxStep = 1e3, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'Vary_tb_MCM_inc' DC1(tb_MCM_inc = 0, {Perturbation = 0.0001, Lower = 0, Upper = 1e6, MaxStep = 1e3, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      BeginScript 'getMp_MCF'
+         GMAT Mp_MCF_tan = E_corr/Isp_corr * tb_MCM_tan;
+      EndScript;
+      
+      Vary 'VaryVx' DC1(DALA_SatFinite.Thruster_MC_tan.ThrustDirection1 = -0.766932632491955, {Perturbation = 0.001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVy' DC1(DALA_SatFinite.Thruster_MC_tan.ThrustDirection2 = 0.1911915793404295, {Perturbation = 0.001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVz' DC1(DALA_SatFinite.Thruster_MC_tan.ThrustDirection3 = -0.9473462029602062, {Perturbation = 0.001, Lower = -1, Upper = 1, MaxStep = maxStep, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'Vary_tb_MCM_tan' DC1(tb_MCM_tan = 28797.59711396744, {Perturbation = 0.0001, Lower = 1e3, Upper = 1e6, MaxStep = 1e2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
       BeginFiniteBurn 'Begin_MCM_tan' MCF_tan(DALA_SatFinite);
       Propagate 'PropBurn' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.ElapsedSecs = tb_MCM_tan, OrbitColor = [0 0 255]};
       EndFiniteBurn 'End_MCM_tan' MCF_tan(DALA_SatFinite);
-      Propagate 'PropToMCM_inc' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.Jupiter.RMAG = 10e6, DALA_SatFinite.ElapsedDays = TOF_MCM_inc, OrbitColor = [255 0 255]};
-      BeginFiniteBurn 'Begin_MCM_inc' MCF_inc(DALA_SatFinite);
-      Propagate 'PropBurn' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.ElapsedSecs = tb_MCM_inc, OrbitColor = [0 255 255]};
-      EndFiniteBurn 'End_MCM_inc' MCF_inc(DALA_SatFinite);
       Propagate 'PropToJupiterSOI' DeepSpaceProp(DALA_SatFinite) {DALA_SatFinite.Jupiter.RMAG = 48.2e6, DALA_SatFinite.ElapsedDays = 365, OrbitColor = [0 0 255]};
       
       BeginScript 'Rp and BVAZI'
          GMAT Rp_Jup = Hp_Jup + 71492;
       EndScript;
-      Propagate 'PropToPeriapsis' NearJupiter(DALA_SatFinite) {DALA_SatFinite.Jupiter.Periapsis, DALA_SatFinite.ElapsedDays = 365, OrbitColor = [255 0 255]};
-      Achieve 'AchieveHp' DC1(DALA_SatFinite.Jupiter.RadPer = Rp_Jup, {Tolerance = 1000});
-      Achieve 'AchieveINC' DC1(DALA_SatFinite.JupiterEq.INC = INC_final, {Tolerance = 150});
+      Propagate 'PropToPeriapsis' NearJupiter(DALA_SatFinite) {DALA_SatFinite.Jupiter.Periapsis, OrbitColor = [255 0 255]};
+      Achieve 'AchieveHp' DC1(DALA_SatFinite.Jupiter.RadPer = Rp_Jup, {Tolerance = 100});
+      Achieve 'AchieveINC' DC1(DALA_SatFinite.JupiterEq.INC = INC_final, {Tolerance = 0.2});
    EndTarget;  % For targeter DC1
-   BeginScript 'getMp_MCF'
-      GMAT Mp_MCF_tan = E_corr/Isp_corr * tb_MCM_tan;
-      GMAT Mp_MCF_inc = E_corr/Isp_corr * tb_MCM_inc;
-   EndScript;
    UpdateDynamicData 'UpdateTable6' TABLE_FINITE;
    
    If 'Fly-by' ECC >= 1.0
