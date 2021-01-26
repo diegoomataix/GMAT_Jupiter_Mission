@@ -5,6 +5,10 @@ from matplotlib import ticker, cm
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 from decimal import Decimal
+import datetime
+from matplotlib.dates import (YEARLY, DateFormatter,
+                              rrulewrapper, RRuleLocator, drange)
+
 import os
 import subprocess
 import matplotlib.image as image
@@ -97,6 +101,72 @@ def plotline(data,name,legend=[],lines_to_plot = []):
     plt.cla()
     plt.close('all')
 
+def contacts(datas,name,legend=[],lines_to_plot = []):
+
+    print('Proceeding with ' + name)
+    x = []
+    y = []
+    z = []
+    for data in datas:
+
+        with open(data, 'r') as data:
+            # Graph data
+            datx = []
+            daty = []
+            datz = []
+            for line in data:
+                p = line.split()
+                try:
+                    day_ini=p[0]
+                    month_ini = p[1]
+                    year_ini = p[2]
+                    #print(p[3])
+                    day_fin=p[4]
+                    month_fin = p[5]
+                    year_fin = p[6]
+                    #print(p[7])
+                    duration = p[8]
+
+                    #
+                    date1 = datetime.date(year_ini, month_ini, day_ini)
+                    #date2 = datetime.date(year_fin, month_fin, day_fin)
+                    print(date1)
+
+                    #datx.append(date1)
+                    #daty.append(date2)
+                    #datz.append(duration)
+
+                except:
+                    a=0
+
+        x.append(datx)
+        y.append(daty)
+        z.append(datz)
+
+    print(x)
+    color  = ['tab:blue','tab:orange','tab:green','tab:purple','tab:grey']
+    rule = rrulewrapper(YEARLY, byeaster=1, interval=5)
+    loc = RRuleLocator(rule)
+    formatter = DateFormatter('%d/%m/%y')
+
+    if lines_to_plot == []:
+        lines_to_plot = range(len(x))
+
+    for i in lines_to_plot:
+            fig, ax = plt.subplots()
+            plt.plot_date(x[i],z[i],color=color[i%len(color)])
+            ax.xaxis.set_major_locator(loc)
+            ax.xaxis.set_major_formatter(formatter)
+            ax.xaxis.set_tick_params(rotation=30, labelsize=10)
+
+    #####################################################################
+
+    plt.grid()
+    lgd = plt.legend(legend,bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.savefig(name+'.png',bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.cla()
+    plt.close('all')
+
 
 ## Altitude
 
@@ -111,22 +181,20 @@ if Altitude == 'yes':
         plotline(source[i],source[i],[],lines_to_plot=[0])
 
 
-Eclipses = 'yes'
+Eclipses = 'no'
 if Eclipses == 'yes':
 
     source = ['./REPORTS/eclipses_1500_flyby.txt','./REPORTS/eclipses_1500_06.txt','./REPORTS/eclipses_1500_01.txt','./REPORTS/eclipses_600_flyby.txt','./REPORTS/eclipses_600_06.txt','./REPORTS/eclipses_600_01.txt']
 
-    for i in range(len(source)):
-        plt.xlabel('time(s)')
-        plt.ylabel('eclipse time(s)')
-        plotline(source[i],source[i],[],lines_to_plot=[0])
+    plt.xlabel('time(s)')
+    plt.ylabel('eclipse time(s)')
+    eclipses(source,'Eclipses',['Rp=1500,fly-by','Rp=1500,e=0.6','Rp=1500,e=0.1','Rp=600,fly-by','Rp=600,e=0.6','Rp=600,e=0.1'])
 
 Contacts = 'yes'
 if Contacts == 'yes':
 
-    source = ['./REPORTS/contacts_1500_flyby.txt','./REPORTS/contacts_1500_06.txt','./REPORTS/contacts_1500_01.txt','./REPORTS/contacts_600_flyby.txt','./REPORTS/contacts_600_06.txt','./REPORTS/contacts_600_01.txt']
+    source = ['./REPORTS/contacts_1500_06.txt','./REPORTS/contacts_1500_01.txt','./REPORTS/contacts_600_06.txt','./REPORTS/contacts_600_01.txt']
 
-    for i in range(len(source)):
-        plt.xlabel('time(s)')
-        plt.ylabel('contact time(s)')
-        plotline(source[i],source[i],[],lines_to_plot=[0])
+    plt.xlabel('Date')
+    plt.ylabel('contact time(s)')
+    contacts(source,'Contacts',['Rp=1500,fly-by','Rp=1500,e=0.6','Rp=1500,e=0.1','Rp=600,fly-by','Rp=600,e=0.6','Rp=600,e=0.1'])
