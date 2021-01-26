@@ -436,6 +436,7 @@ GMAT Montegancedo.MinimumElevationAngle = 7;
 
 
 
+
 %----------------------------------------
 %---------- ForceModels
 %----------------------------------------
@@ -487,7 +488,7 @@ GMAT DeepSpaceProp.StopIfAccuracyIsViolated = true;
 Create Propagator NearEarth;
 GMAT NearEarth.FM = NearEarth_ForceModel;
 GMAT NearEarth.Type = RungeKutta89;
-GMAT NearEarth.InitialStepSize = 60;
+GMAT NearEarth.InitialStepSize = 1;
 GMAT NearEarth.Accuracy = 9.999999999999999e-12;
 GMAT NearEarth.MinStep = 0.001;
 GMAT NearEarth.MaxStep = 2700;
@@ -801,7 +802,7 @@ GMAT Altitude.UpperLeft = [ 0.03058823529411765 0.06190476190476191 ];
 GMAT Altitude.Size = [ 0.5994117647058823 0.7988095238095239 ];
 GMAT Altitude.RelativeZOrder = 773;
 GMAT Altitude.Maximized = false;
-GMAT Altitude.Filename = 'D:\0_Andres\1_Universidad\MUSE\EEA\GMAT_Jupiter_Mission\Altitude.txt';
+GMAT Altitude.Filename = 'Altitude.txt';
 GMAT Altitude.Precision = 16;
 GMAT Altitude.Add = {DALA_SatFine.Jupiter.Altitude, DALA_SatFine.ElapsedSecs};
 GMAT Altitude.WriteHeaders = true;
@@ -857,7 +858,7 @@ GMAT BVAZI_E = 0;
 GMAT RAAN_E = 0;
 GMAT AOP_E = 0;
 GMAT TOF_MCM = 0;
-GMAT Hp_Jup = 600;
+GMAT Hp_Jup = 1500;
 GMAT Rp_Jup = 0;
 GMAT phi_Jup = 0;
 GMAT BVAZI_Jup = 0;
@@ -891,6 +892,7 @@ GMAT Mp_HF = 0;
 GMAT Mp_MCF = 0;
 GMAT Mp_FF = 0;
 GMAT Mp_F = 0;
+
 
 
 
