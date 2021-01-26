@@ -117,6 +117,7 @@ def contacts(datas,name,legend=[],lines_to_plot = []):
             for line in data:
                 p = line.split()
                 try:
+                    print('r')
                     day_ini=p[0]
                     month_ini = p[1]
                     year_ini = p[2]
@@ -129,12 +130,11 @@ def contacts(datas,name,legend=[],lines_to_plot = []):
 
                     #
                     date1 = datetime.date(year_ini, month_ini, day_ini)
-                    #date2 = datetime.date(year_fin, month_fin, day_fin)
-                    print(date1)
+                    date2 = datetime.date(year_fin, month_fin, day_fin)
 
-                    #datx.append(date1)
-                    #daty.append(date2)
-                    #datz.append(duration)
+                    datx.append(date1)
+                    daty.append(date2)
+                    datz.append(duration)
 
                 except:
                     a=0
