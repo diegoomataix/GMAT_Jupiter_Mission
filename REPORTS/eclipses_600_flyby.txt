@@ -1,0 +1,3 @@
+Spacecraft: DALA_SatFine
+
+There are no eclipse events in the time interval 02 Oct 2031 03:04:43.121 to 31 Oct 2031 03:04:43.121

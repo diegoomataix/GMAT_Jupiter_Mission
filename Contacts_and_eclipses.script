@@ -437,6 +437,7 @@ GMAT Montegancedo.MinimumElevationAngle = 7;
 
 
 
+
 %----------------------------------------
 %---------- ForceModels
 %----------------------------------------
@@ -588,10 +589,10 @@ GMAT ContactsWithFinalOrbit.Filename = 'D:\0_Andres\1_Universidad\MUSE\EEA\GMAT_
 GMAT ContactsWithFinalOrbit.OccultingBodies = {Earth, Jupiter, Luna, Mars};
 GMAT ContactsWithFinalOrbit.InputEpochFormat = 'UTCGregorian';
 GMAT ContactsWithFinalOrbit.InitialEpoch = '02 Oct 2031 03:04:43.121';
-GMAT ContactsWithFinalOrbit.StepSize = 600;
-GMAT ContactsWithFinalOrbit.FinalEpoch = '02 Oct 2032 03:04:43.121';
-GMAT ContactsWithFinalOrbit.UseLightTimeDelay = true;
-GMAT ContactsWithFinalOrbit.UseStellarAberration = true;
+GMAT ContactsWithFinalOrbit.StepSize = 60;
+GMAT ContactsWithFinalOrbit.FinalEpoch = '31 Oct 2031 03:04:43.121';
+GMAT ContactsWithFinalOrbit.UseLightTimeDelay = false;
+GMAT ContactsWithFinalOrbit.UseStellarAberration = false;
 GMAT ContactsWithFinalOrbit.WriteReport = true;
 GMAT ContactsWithFinalOrbit.RunMode = Automatic;
 GMAT ContactsWithFinalOrbit.UseEntireInterval = false;
@@ -604,10 +605,10 @@ GMAT EclipsesWithFinalOrbit.Filename = 'D:\0_Andres\1_Universidad\MUSE\EEA\GMAT_
 GMAT EclipsesWithFinalOrbit.OccultingBodies = {Earth, Jupiter, Luna, Mars};
 GMAT EclipsesWithFinalOrbit.InputEpochFormat = 'UTCGregorian';
 GMAT EclipsesWithFinalOrbit.InitialEpoch = '02 Oct 2031 03:04:43.121';
-GMAT EclipsesWithFinalOrbit.StepSize = 600;
-GMAT EclipsesWithFinalOrbit.FinalEpoch = '02 Oct 2032 03:04:43.121';
-GMAT EclipsesWithFinalOrbit.UseLightTimeDelay = true;
-GMAT EclipsesWithFinalOrbit.UseStellarAberration = true;
+GMAT EclipsesWithFinalOrbit.StepSize = 60;
+GMAT EclipsesWithFinalOrbit.FinalEpoch = '31 Oct 2031 03:04:43.121';
+GMAT EclipsesWithFinalOrbit.UseLightTimeDelay = false;
+GMAT EclipsesWithFinalOrbit.UseStellarAberration = false;
 GMAT EclipsesWithFinalOrbit.WriteReport = true;
 GMAT EclipsesWithFinalOrbit.RunMode = Automatic;
 GMAT EclipsesWithFinalOrbit.UseEntireInterval = false;
@@ -662,9 +663,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView EarthView;
 GMAT EarthView.SolverIterations = Current;
-GMAT EarthView.UpperLeft = [ 0.004273504273504274 0.0798611111111111 ];
-GMAT EarthView.Size = [ 0.8326210826210826 0.75 ];
-GMAT EarthView.RelativeZOrder = 1579;
+GMAT EarthView.UpperLeft = [ 0.003919007184846506 0.07870370370370371 ];
+GMAT EarthView.Size = [ 0.8321358589157414 0.75 ];
+GMAT EarthView.RelativeZOrder = 131;
 GMAT EarthView.Maximized = false;
 GMAT EarthView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Earth};
 GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
@@ -694,9 +695,9 @@ GMAT EarthView.EnableConstellations = Off;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = All;
-GMAT SolarSystemView.UpperLeft = [ -0.2927350427350427 0.2430555555555556 ];
-GMAT SolarSystemView.Size = [ 1.04985754985755 0.8877314814814815 ];
-GMAT SolarSystemView.RelativeZOrder = 1909;
+GMAT SolarSystemView.UpperLeft = [ -0.2919660352710647 0.2418981481481481 ];
+GMAT SolarSystemView.Size = [ 1.049640757674722 0.8877314814814815 ];
+GMAT SolarSystemView.RelativeZOrder = 190;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Earth, Sun, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -726,9 +727,9 @@ GMAT SolarSystemView.EnableConstellations = Off;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = All;
-GMAT JupiterView.UpperLeft = [ 0.0007122507122507123 0.1122685185185185 ];
-GMAT JupiterView.Size = [ 0.7984330484330484 0.5659722222222222 ];
-GMAT JupiterView.RelativeZOrder = 1599;
+GMAT JupiterView.UpperLeft = [ 0.0006531678641410843 0.1111111111111111 ];
+GMAT JupiterView.Size = [ 0.798171129980405 0.5659722222222222 ];
+GMAT JupiterView.RelativeZOrder = 151;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {DALA_Sat, DALA_SatFine, DALA_SatFinite, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -757,9 +758,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = Off;
 
 Create DynamicDataDisplay TABLE;
-GMAT TABLE.UpperLeft = [ -0.3454415954415954 0.6724537037037037 ];
-GMAT TABLE.Size = [ 1.171652421652422 1.25 ];
-GMAT TABLE.RelativeZOrder = 1594;
+GMAT TABLE.UpperLeft = [ -0.3448726322664925 0.6712962962962963 ];
+GMAT TABLE.Size = [ 1.182233834095362 1.25 ];
+GMAT TABLE.RelativeZOrder = 146;
 GMAT TABLE.Maximized = false;
 GMAT TABLE.AddParameters = {1, VinfX_E, alpha_E, Hp_Jup, dV_HM, Mp};
 GMAT TABLE.AddParameters = {2, VinfY_E, delta_E, Rp_Jup, dV_MCM, Mp_HI};
@@ -781,9 +782,9 @@ GMAT TABLE.WarnColor = [218 165 32];
 GMAT TABLE.CritColor = [255 0 0];
 
 Create DynamicDataDisplay TABLE_FINITE;
-GMAT TABLE_FINITE.UpperLeft = [ -0.002136752136752137 0.07291666666666667 ];
-GMAT TABLE_FINITE.Size = [ 0.8924501424501424 1.233796296296296 ];
-GMAT TABLE_FINITE.RelativeZOrder = 1584;
+GMAT TABLE_FINITE.UpperLeft = [ -0.001959503592423253 0.07175925925925926 ];
+GMAT TABLE_FINITE.Size = [ 0.9033311561071196 1.25 ];
+GMAT TABLE_FINITE.RelativeZOrder = 136;
 GMAT TABLE_FINITE.Maximized = false;
 GMAT TABLE_FINITE.AddParameters = {1, tb_HM, Mp_HF};
 GMAT TABLE_FINITE.AddParameters = {2, tb_MCM, Mp_MCF};
@@ -815,9 +816,9 @@ GMAT Altitude.WriteReport = true;
 
 Create GroundTrackPlot JupiterTrack;
 GMAT JupiterTrack.SolverIterations = Current;
-GMAT JupiterTrack.UpperLeft = [ 0.1317663817663818 0.2453703703703704 ];
-GMAT JupiterTrack.Size = [ 0.5754985754985755 0.4502314814814815 ];
-GMAT JupiterTrack.RelativeZOrder = 1589;
+GMAT JupiterTrack.UpperLeft = [ 0.1312867406923579 0.244212962962963 ];
+GMAT JupiterTrack.Size = [ 0.5754408883082952 0.4502314814814815 ];
+GMAT JupiterTrack.RelativeZOrder = 141;
 GMAT JupiterTrack.Maximized = false;
 GMAT JupiterTrack.Add = {DALA_SatFine};
 GMAT JupiterTrack.DataCollectFrequency = 2;
@@ -875,7 +876,7 @@ GMAT BVAZI_E = 0;
 GMAT RAAN_E = 0;
 GMAT AOP_E = 0;
 GMAT TOF_MCM = 0;
-GMAT Hp_Jup = 1500;
+GMAT Hp_Jup = 600;
 GMAT Rp_Jup = 0;
 GMAT phi_Jup = 0;
 GMAT BVAZI_Jup = 0;
@@ -909,6 +910,7 @@ GMAT Mp_HF = 0;
 GMAT Mp_MCF = 0;
 GMAT Mp_FF = 0;
 GMAT Mp_F = 0;
+
 
 
 
@@ -1080,7 +1082,7 @@ If 'Instant analysis' CASE == 1
    UpdateDynamicData 'UpdateTable2' TABLE;
    If 'Fly-by' ECC >= 1.0
       If 'Prop4contats&eclipses' getCONTACTS == 1
-         Propagate 'PropInJup' NearJupiter(DALA_SatFine) {DALA_SatFine.ElapsedDays = 366, OrbitColor = [255 128 64]};
+         Propagate 'PropInJup' NearJupiter(DALA_SatFine) {DALA_SatFine.ElapsedDays = 30, OrbitColor = [255 128 64]};
       EndIf;
       If 'Prop4altitude' getALTITUDE == 1
          Toggle 'JupiterTrackandAltitudeON' JupiterTrack Altitude On;

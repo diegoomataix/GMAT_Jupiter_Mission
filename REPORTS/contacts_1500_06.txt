@@ -1,7 +1,3 @@
-Target: DALA_SatFine
-
-Observer: Montegancedo
-Start Time (UTC)            Stop Time (UTC)               Duration (s)         
 02 Oct 2031 13:08:34.951    02 Oct 2031 20:46:37.724      27482.773438    
 03 Oct 2031 13:05:15.677    03 Oct 2031 20:43:13.804      27478.127297    
 04 Oct 2031 13:01:57.746    04 Oct 2031 20:39:50.396      27472.649642    
@@ -369,8 +365,4 @@ Start Time (UTC)            Stop Time (UTC)               Duration (s)
 29 Sep 2032 15:22:48.330    29 Sep 2032 23:10:26.132      28057.802597    
 30 Sep 2032 15:19:00.062    30 Sep 2032 23:06:43.221      28063.158569    
 01 Oct 2032 15:15:12.403    01 Oct 2032 23:03:01.249      28068.845963    
-
-
-Number of events : 367
-
 

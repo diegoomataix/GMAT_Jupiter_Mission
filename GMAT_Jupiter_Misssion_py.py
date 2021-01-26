@@ -7,7 +7,7 @@ from scipy.interpolate import interp1d
 from decimal import Decimal
 import datetime
 from matplotlib.dates import (YEARLY, DateFormatter,
-                              rrulewrapper, RRuleLocator, drange)
+                              rrulewrapper, RRuleLocator, drange, date2num)
 
 import os
 import subprocess
@@ -108,6 +108,7 @@ def contacts(datas,name,legend=[],lines_to_plot = []):
     y = []
     z = []
     for data in datas:
+        print('Proceeding with ' + data)
 
         with open(data, 'r') as data:
             # Graph data
@@ -117,54 +118,182 @@ def contacts(datas,name,legend=[],lines_to_plot = []):
             for line in data:
                 p = line.split()
                 try:
-                    print('r')
-                    day_ini=p[0]
-                    month_ini = p[1]
-                    year_ini = p[2]
-                    #print(p[3])
-                    day_fin=p[4]
-                    month_fin = p[5]
-                    year_fin = p[6]
-                    #print(p[7])
-                    duration = p[8]
+                    day_ini= int(p[0])
 
-                    #
-                    date1 = datetime.date(year_ini, month_ini, day_ini)
-                    date2 = datetime.date(year_fin, month_fin, day_fin)
+                    month_ini = p[1]
+                    if month_ini == 'Jan':
+                        month_ini = int(1)
+                    elif month_ini == 'Feb':
+                        month_ini = int(2)
+                    elif month_ini == 'Mar':
+                        month_ini = int(3)
+                    elif month_ini == 'Apr':
+                        month_ini = int(4)
+                    elif month_ini == 'May':
+                        month_ini = int(5)
+                    elif month_ini == 'Jun':
+                        month_ini = int(6)
+                    elif month_ini == 'Jul':
+                        month_ini = int(7)
+                    elif month_ini == 'Aug':
+                        month_ini = int(8)
+                    elif month_ini == 'Sep':
+                        month_ini = int(9)
+                    elif month_ini == 'Oct':
+                        month_ini = int(10)
+                    elif month_ini == 'Nov':
+                        month_ini = int(11)
+                    elif month_ini == 'Dec':
+                        month_ini = int(12)
+                    else:
+                        print('No month')
+
+                    year_ini = int(p[2])
+                    time_ini = p[3]
+                    time_ini_vect = time_ini.split(':')
+                    hour_ini = int(time_ini_vect[0])
+                    min_ini = int(time_ini_vect[1])
+
+                    duration = float(p[8])
+
+                    date1 = datetime.datetime(year_ini, month_ini, day_ini, hour_ini, min_ini)
+
 
                     datx.append(date1)
-                    daty.append(date2)
                     datz.append(duration)
-
                 except:
                     a=0
 
-        x.append(datx)
-        y.append(daty)
-        z.append(datz)
+            x.append(datx)
+            z.append(datz)
 
-    print(x)
-    color  = ['tab:blue','tab:orange','tab:green','tab:purple','tab:grey']
-    rule = rrulewrapper(YEARLY, byeaster=1, interval=5)
-    loc = RRuleLocator(rule)
+    color  = ['tab:blue','tab:orange','tab:green','tab:purple','tab:grey','tab:red']
     formatter = DateFormatter('%d/%m/%y')
 
     if lines_to_plot == []:
         lines_to_plot = range(len(x))
 
+    fig, ax = plt.subplots()
     for i in lines_to_plot:
-            fig, ax = plt.subplots()
-            plt.plot_date(x[i],z[i],color=color[i%len(color)])
-            ax.xaxis.set_major_locator(loc)
+            date = date2num(x[i])
+            duration = z[i]
+            plt.scatter(date,duration,color=color[i%len(color)],s=20)
+            ax.set_xlabel('Date')
+            ax.set_ylabel('Contact time(s)')
             ax.xaxis.set_major_formatter(formatter)
             ax.xaxis.set_tick_params(rotation=30, labelsize=10)
 
-    #####################################################################
+
+        #####################################################################
 
     plt.grid()
-    lgd = plt.legend(legend,bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.savefig(name+'.png',bbox_extra_artists=(lgd,), bbox_inches='tight')
-    plt.cla()
+    lgd = plt.legend(legend)
+    plt.savefig(name+'.png')
+    plt.close('all')
+
+def eclipses(datas,name,legend=[],lines_to_plot = []):
+
+    print('Proceeding with ' + name)
+    x = []
+    y = []
+    z = []
+    x_penumbra = []
+    y_penumbra = []
+    z_penumbra = []
+    for data in datas:
+        print('Proceeding with ' + data)
+
+        with open(data, 'r') as data:
+            # Graph data
+            datx = []
+            daty = []
+            datz = []
+            datx_penumbra = []
+            daty_penumbra = []
+            datz_penumbra = []
+            for line in data:
+                p = line.split()
+                try:
+                    day_ini= int(p[0])
+
+                    month_ini = p[1]
+                    if month_ini == 'Jan':
+                        month_ini = int(1)
+                    elif month_ini == 'Feb':
+                        month_ini = int(2)
+                    elif month_ini == 'Mar':
+                        month_ini = int(3)
+                    elif month_ini == 'Apr':
+                        month_ini = int(4)
+                    elif month_ini == 'May':
+                        month_ini = int(5)
+                    elif month_ini == 'Jun':
+                        month_ini = int(6)
+                    elif month_ini == 'Jul':
+                        month_ini = int(7)
+                    elif month_ini == 'Aug':
+                        month_ini = int(8)
+                    elif month_ini == 'Sep':
+                        month_ini = int(9)
+                    elif month_ini == 'Oct':
+                        month_ini = int(10)
+                    elif month_ini == 'Nov':
+                        month_ini = int(11)
+                    elif month_ini == 'Dec':
+                        month_ini = int(12)
+                    else:
+                        print('No month')
+
+                    year_ini = int(p[2])
+                    time_ini = p[3]
+                    time_ini_vect = time_ini.split(':')
+                    hour_ini = int(time_ini_vect[0])
+                    min_ini = int(time_ini_vect[1])
+
+                    duration = float(p[8])
+
+                    date1 = datetime.datetime(year_ini, month_ini, day_ini, hour_ini, min_ini)
+
+                    if 'Penumbra' in line:
+                        datx_penumbra.append(date1)
+                        datz_penumbra.append(duration)
+                    elif 'Umbra' in line:
+                        datx.append(date1)
+                        datz.append(duration)
+
+                except:
+                    a=0
+
+            x.append(datx)
+            z.append(datz)
+            x_penumbra.append(datx_penumbra)
+            z_penumbra.append(datz_penumbra)
+
+    color  = ['tab:blue','tab:orange','tab:green','tab:purple','tab:grey','tab:red']
+    formatter = DateFormatter('%d/%m/%y')
+
+    if lines_to_plot == []:
+        lines_to_plot = range(len(x))
+
+    fig, ax = plt.subplots()
+    for i in lines_to_plot:
+            date = date2num(x[i])
+            duration = z[i]
+            date_penumbra = date2num(x[i])
+            duration_penumbra = z[i]
+            plt.scatter(date,duration,color=color[i%len(color)],s=20)
+            plt.scatter(date_penumbra,duration_penumbra,color=color[i%len(color)],s=20,marker="*")
+            ax.set_xlabel('Date')
+            ax.set_ylabel('Duration(s)')
+            ax.xaxis.set_major_formatter(formatter)
+            ax.xaxis.set_tick_params(rotation=30, labelsize=10)
+
+
+        #####################################################################
+
+    plt.grid()
+    lgd = plt.legend(legend)
+    plt.savefig(name+'.png')
     plt.close('all')
 
 
@@ -181,20 +310,16 @@ if Altitude == 'yes':
         plotline(source[i],source[i],[],lines_to_plot=[0])
 
 
-Eclipses = 'no'
+Eclipses = 'yes'
 if Eclipses == 'yes':
 
     source = ['./REPORTS/eclipses_1500_flyby.txt','./REPORTS/eclipses_1500_06.txt','./REPORTS/eclipses_1500_01.txt','./REPORTS/eclipses_600_flyby.txt','./REPORTS/eclipses_600_06.txt','./REPORTS/eclipses_600_01.txt']
 
-    plt.xlabel('time(s)')
-    plt.ylabel('eclipse time(s)')
-    eclipses(source,'Eclipses',['Rp=1500,fly-by','Rp=1500,e=0.6','Rp=1500,e=0.1','Rp=600,fly-by','Rp=600,e=0.6','Rp=600,e=0.1'])
+    eclipses(source,'Eclipses',['Umbra(Rp=1500,flyby)','Penumbra(Rp=1500,flyby)','Umbra(Rp=1500,e=0.6)','Umbra(Rp=1500,e=0.6)','Umbra(Rp=1500,e=0.1)','Penumbra(Rp=1500,e=0.1)','Umbra(Rp=600,flyby)','Penumbra(Rp=600,flyby)','Umbra(Rp=600,e=0.6)','Penumbra(Rp=600,e=0.6)','Umbra(Rp=600,e=0.1)','Penumbra(Rp=600,e=0.1)'])
 
 Contacts = 'yes'
 if Contacts == 'yes':
 
-    source = ['./REPORTS/contacts_1500_06.txt','./REPORTS/contacts_1500_01.txt','./REPORTS/contacts_600_06.txt','./REPORTS/contacts_600_01.txt']
+    source = ['./REPORTS/contacts_1500_flyby.txt','./REPORTS/contacts_1500_06.txt','./REPORTS/contacts_1500_01.txt','./REPORTS/contacts_600_flyby.txt','./REPORTS/contacts_600_06.txt','./REPORTS/contacts_600_01.txt']
 
-    plt.xlabel('Date')
-    plt.ylabel('contact time(s)')
-    contacts(source,'Contacts',['Rp=1500,fly-by','Rp=1500,e=0.6','Rp=1500,e=0.1','Rp=600,fly-by','Rp=600,e=0.6','Rp=600,e=0.1'])
+    contacts(source,'Contacts',['Rp=1500,flyby','Rp=1500,e=0.6','Rp=1500,e=0.1','Rp=600,flyby','Rp=600,e=0.6','Rp=600,e=0.1'])
